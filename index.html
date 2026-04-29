@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UMMAH ISLAMIC CENTER – خطة المحتوى الشهرية</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+  /* ===== ROOT VARIABLES ===== */
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-pale: #F5E6B8;
+    --deep-green: #0D3B2E;
+    --mid-green: #1A5C44;
+    --light-green: #2A8C64;
+    --accent-green: #3DB87F;
+    --cream: #FAF5E8;
+    --warm-white: #FFFDF5;
+    --dark: #0A1F14;
+    --text-main: #1C2E1A;
+    --text-muted: #5A7A60;
+    --card-bg: rgba(255,255,255,0.92);
+    --shadow-gold: 0 8px 40px rgba(201,168,76,0.18);
+    --shadow-green: 0 8px 40px rgba(13,59,46,0.18);
+    --radius: 20px;
+    --radius-sm: 12px;
+  }
+
+  /* ===== RESET ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--cream);
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ===== SPLASH SCREEN ===== */
+  #splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: linear-gradient(135deg, var(--deep-green) 0%, #0A1F14 40%, #0F2D20 70%, var(--mid-green) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    transition: opacity 0.9s ease, visibility 0.9s ease;
+  }
+  #splash.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+  /* Ornamental ring around logo */
+  .splash-ring {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .splash-ring::before, .splash-ring::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    animation: ring-spin 4s linear infinite;
+  }
+  .splash-ring::before {
+    width: 200px; height: 200px;
+    border-color: var(--gold) transparent var(--gold) transparent;
+    animation-duration: 3s;
+  }
+  .splash-ring::after {
+    width: 230px; height: 230px;
+    border-color: transparent var(--gold-light) transparent var(--gold-light);
+    animation-duration: 5s;
+    animation-direction: reverse;
+  }
+  @keyframes ring-spin { to { transform: rotate(360deg); } }
+
+  .splash-logo-img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    border-radius: 50%;
+    animation: logo-pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(201,168,76,0.5));
+  }
+  @keyframes logo-pulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(201,168,76,0.4)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 30px rgba(201,168,76,0.7)); }
+  }
+
+  .splash-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    text-align: center;
+    opacity: 0;
+    animation: fade-up 0.8s 0.5s forwards;
+  }
+  .splash-sub {
+    font-family: 'Cairo', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fade-up 0.8s 0.9s forwards;
+  }
+  .splash-dots {
+    display: flex; gap: 8px;
+    opacity: 0;
+    animation: fade-up 0.8s 1.2s forwards;
+  }
+  .splash-dots span {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: dot-bounce 1.2s ease-in-out infinite;
+  }
+  .splash-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .splash-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dot-bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(-8px); opacity: 1; }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== DECORATIVE PATTERN BG ===== */
+  .pattern-bg {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(201,168,76,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse at 10% 80%, rgba(13,59,46,0.06) 0%, transparent 60%),
+      var(--cream);
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,59,46,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid rgba(201,168,76,0.3);
+    padding: 0 24px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 20px;
+  }
+  .header-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .header-logo img {
+    width: 48px; height: 48px;
+    object-fit: contain; border-radius: 50%;
+    border: 2px solid var(--gold);
+    transition: transform 0.3s;
+  }
+  .header-logo:hover img { transform: rotate(10deg) scale(1.05); }
+  .header-logo-text {
+    font-family: 'Amiri', serif;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+    line-height: 1.2;
+  }
+  .header-logo-text span {
+    display: block;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+  }
+  nav { display: flex; gap: 6px; }
+  nav a {
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.25s;
+  }
+  nav a:hover {
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.12);
+    border-color: rgba(201,168,76,0.3);
+  }
+  .nav-toggle {
+    display: none;
+    background: none; border: none;
+    cursor: pointer; flex-direction: column; gap: 5px;
+  }
+  .nav-toggle span {
+    display: block; width: 24px; height: 2px;
+    background: var(--gold-light);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 88vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--deep-green) 0%, #112A1A 50%, var(--mid-green) 100%);
+  }
+  .hero-geo {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  }
+  /* Islamic geometric pattern SVG overlay */
+  .hero-geo svg {
+    position: absolute;
+    opacity: 0.06;
+    animation: geo-float 12s ease-in-out infinite;
+  }
+  .hero-geo svg:nth-child(1) { width: 600px; top: -100px; right: -100px; animation-delay: 0s; }
+  .hero-geo svg:nth-child(2) { width: 400px; bottom: -80px; left: -80px; animation-delay: -4s; }
+  @keyframes geo-float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(3deg); }
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+  @keyframes glow-pulse {
+    0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.7; }
+    50% { transform: translate(-50%,-50%) scale(1.15); opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 80px 24px 60px;
+    max-width: 800px;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.5);
+    color: var(--gold-light);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    padding: 6px 20px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    animation: hero-entry 0.8s 2.5s both;
+  }
+  .hero-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 10px;
+    animation: hero-entry 0.8s 2.7s both;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold-light);
+    position: relative;
+  }
+  .hero-subtitle {
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    margin-bottom: 40px;
+    animation: hero-entry 0.8s 2.9s both;
+  }
+  .hero-stats {
+    display: flex; gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: hero-entry 0.8s 3.1s both;
+  }
+  .stat-item {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--gold-light);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    display: block;
+  }
+  .stat-divider {
+    width: 1px; background: rgba(201,168,76,0.3);
+    align-self: stretch;
+  }
+  @keyframes hero-entry {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SECTION WRAPPER ===== */
+  section { padding: 80px 24px; }
+  .section-inner { max-width: 1200px; margin: auto; }
+  .section-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--deep-green);
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 600px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  /* ===== STRATEGY SECTION ===== */
+  #strategy { background: var(--warm-white); }
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .strategy-card {
+    background: var(--card-bg);
+    border: 1.5px solid rgba(201,168,76,0.15);
+    border-radius: var(--radius);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-gold);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .strategy-card.visible {
+    animation: card-appear 0.6s forwards;
+  }
+  @keyframes card-appear {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .strategy-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(201,168,76,0.22);
+    border-color: rgba(201,168,76,0.4);
+  }
+  .strategy-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle at top right, rgba(201,168,76,0.12), transparent 70%);
+    border-radius: 0 var(--radius) 0 0;
+    pointer-events: none;
+  }
+  .card-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--deep-green), var(--mid-green));
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 20px rgba(13,59,46,0.25);
+    transition: transform 0.3s;
+  }
+  .strategy-card:hover .card-icon { transform: rotate(-8deg) scale(1.05); }
+  .card-title {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--deep-green);
+    margin-bottom: 8px;
+  }
+  .card-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+  .card-time {
+    display: inline-block;
+    margin-top: 14px;
+    background: rgba(13,59,46,0.06);
+    color: var(--mid-green);
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(13,59,46,0.12);
+  }
+
+  /* ===== PILLARS SECTION ===== */
+  #pillars { background: var(--cream); }
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+  }
+  .pillar-card {
+    border-radius: var(--radius);
+    padding: 0;
+    overflow: hidden;
+    box-shadow: var(--shadow-green);
+    position: relative;
+    opacity: 0; transform: scale(0.95);
+    transition: all 0.4s;
+  }
+  .pillar-card.visible { animation: pillar-appear 0.6s forwards; }
+  @keyframes pillar-appear { to { opacity: 1; transform: scale(1); } }
+  .pillar-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 28px 70px rgba(0,0,0,0.15); }
+
+  .pillar-header {
+    padding: 30px 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pillar-card:nth-child(1) .pillar-header { background: linear-gradient(135deg, var(--deep-green), #1A6648); }
+  .pillar-card:nth-child(2) .pillar-header { background: linear-gradient(135deg, #1A3A5C, #2A6098); }
+  .pillar-card:nth-child(3) .pillar-header { background: linear-gradient(135deg, #5C2A1A, #8C4A28); }
+
+  .pillar-header::after {
+    content: '';
+    position: absolute; bottom: -30px; left: -30px;
+    width: 120px; height: 120px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .pillar-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: rgba(255,255,255,0.12);
+    line-height: 1;
+    position: absolute;
+    top: 16px; left: 24px;
+  }
+  .pillar-emoji { font-size: 2rem; margin-bottom: 10px; display: block; }
+  .pillar-title-h {
+    font-family: 'Amiri', serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .pillar-sub { font-size: 0.8rem; color: rgba(255,255,255,0.55); letter-spacing: 2px; }
+  .pillar-body { background: var(--card-bg); padding: 24px 28px; }
+  .pillar-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .pillar-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.87rem; color: var(--text-main); line-height: 1.6;
+  }
+  .pillar-list li::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 0.55rem;
+    margin-top: 5px; flex-shrink: 0;
+  }
+
+  /* ===== WEEKLY SCHEDULE ===== */
+  #schedule { background: var(--deep-green); }
+  #schedule .section-title { color: var(--gold-light); }
+  #schedule .section-label { color: var(--gold); }
+  #schedule .section-desc { color: rgba(255,255,255,0.5); }
+
+  .week-tabs {
+    display: flex; gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .tab-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--deep-green);
+  }
+
+  .schedule-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  table.schedule {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 700px;
+    background: rgba(255,255,255,0.04);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  table.schedule thead tr th {
+    background: rgba(201,168,76,0.15);
+    color: var(--gold-light);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 14px 16px;
+    text-align: center;
+    border-bottom: 1.5px solid rgba(201,168,76,0.2);
+  }
+  table.schedule thead tr th:first-child { text-align: right; border-radius: 0; }
+  table.schedule tbody tr {
+    transition: background 0.2s;
+  }
+  table.schedule tbody tr:hover td { background: rgba(201,168,76,0.06); }
+  table.schedule tbody td {
+    padding: 14px 14px;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.75);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    text-align: center;
+    line-height: 1.5;
+    vertical-align: middle;
+    transition: background 0.2s;
+  }
+  table.schedule tbody td:first-child {
+    font-weight: 700;
+    color: var(--gold-light);
+    background: rgba(201,168,76,0.08);
+    text-align: right;
+    white-space: nowrap;
+  }
+  table.schedule tbody tr:last-child td { border-bottom: none; }
+
+  .tag-pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-top: 4px;
+  }
+  .tag-edu { background: rgba(42,140,100,0.2); color: #3DB87F; border: 1px solid rgba(61,184,127,0.3); }
+  .tag-ai  { background: rgba(42,96,152,0.25); color: #6EB3F7; border: 1px solid rgba(110,179,247,0.3); }
+  .tag-promo { background: rgba(201,168,76,0.15); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.3); }
+  .tag-mixed { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.12); }
+
+  /* ===== TIPS SECTION ===== */
+  #tips { background: var(--warm-white); }
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .tip-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-sm);
+    padding: 26px 24px;
+    border: 1.5px solid rgba(13,59,46,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    display: flex; gap: 16px;
+    align-items: flex-start;
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0; transform: translateX(20px);
+  }
+  .tip-card.visible { animation: tip-appear 0.5s forwards; }
+  @keyframes tip-appear { to { opacity: 1; transform: translateX(0); } }
+  .tip-card:hover { transform: translateX(-4px) translateY(-4px); box-shadow: 0 12px 40px rgba(13,59,46,0.1); }
+  .tip-icon-wrap {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--gold-pale), var(--gold));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 14px rgba(201,168,76,0.3);
+  }
+  .tip-text h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--deep-green);
+    margin-bottom: 5px;
+  }
+  .tip-text p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--dark);
+    padding: 56px 24px 32px;
+    text-align: center;
+  }
+  .footer-inner { max-width: 800px; margin: auto; }
+  .footer-logo-img {
+    width: 64px; height: 64px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid rgba(201,168,76,0.4);
+    margin-bottom: 16px;
+    filter: brightness(0.9);
+  }
+  .footer-name {
+    font-family: 'Amiri', serif;
+    font-size: 1.4rem;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+  }
+  .footer-tagline { font-size: 0.8rem; color: rgba(255,255,255,0.35); letter-spacing: 2px; margin-bottom: 28px; }
+  .footer-divider {
+    width: 60px; height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 24px;
+  }
+  .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+  /* ===== SCROLL PROGRESS ===== */
+  #scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--accent-green));
+    z-index: 9998;
+    width: 0%;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  /* ===== FLOATING ORNAMENT ===== */
+  .ornament {
+    text-align: center;
+    margin: 0 0 32px;
+    color: var(--gold);
+    font-size: 1.4rem;
+    letter-spacing: 8px;
+    opacity: 0.6;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav { display: none; }
+    nav.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 72px; right: 0; left: 0;
+      background: rgba(13,59,46,0.98);
+      padding: 16px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .nav-toggle { display: flex; }
+    .header-inner { position: relative; }
+    .hero-stats { gap: 20px; }
+    .stat-divider { display: none; }
+    section { padding: 56px 16px; }
+  }
+
+  /* ===== ANIMATION UTILITIES ===== */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Counter animation */
+  .count-anim { display: inline-block; }
+
+  /* ===== GOLD DIVIDER ===== */
+  .gold-divider {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 40px;
+  }
+  .gold-divider::before, .gold-divider::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+  }
+  .gold-divider span { color: var(--gold); font-size: 1rem; }
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="scroll-progress"></div>
+
+<!-- ===== SPLASH SCREEN ===== -->
+<div id="splash">
+  <div class="splash-ring">
+    <img src="logo.png" alt="UMMAH ISLAMIC CENTER" class="splash-logo-img"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+    <div style="display:none; width:120px; height:120px; align-items:center; justify-content:center;
+                background: linear-gradient(135deg, var(--gold), var(--gold-light));
+                border-radius:50%; font-size:2.5rem;">🕌</div>
+  </div>
+  <div class="splash-title">مركز الأمة الإسلامي</div>
+  <div class="splash-sub">UMMAH ISLAMIC CENTER</div>
+  <div class="splash-dots">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- ===== BACKGROUND ===== -->
+<div class="pattern-bg"></div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="header-logo">
+      <img src="logo.png" alt="Logo"
+           onerror="this.style.display='none'">
+      <div class="header-logo-text">
+        مركز الأمة الإسلامي
+        <span>UMMAH ISLAMIC CENTER</span>
+      </div>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="القائمة">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mainNav">
+      <a href="#strategy">استراتيجية التوزيع</a>
+      <a href="#pillars">المحاور الثلاثة</a>
+      <a href="#schedule">الجدول الأسبوعي</a>
+      <a href="#tips">نصائح الإدارة</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-geo">
+    <!-- Islamic geometric SVG pattern -->
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="0.8">
+      <polygon points="200,20 380,110 380,290 200,380 20,290 20,110" />
+      <polygon points="200,60 340,130 340,270 200,340 60,270 60,130" />
+      <polygon points="200,100 300,150 300,250 200,300 100,250 100,150" />
+      <line x1="200" y1="20" x2="200" y2="380"/>
+      <line x1="20" y1="110" x2="380" y2="290"/>
+      <line x1="380" y1="110" x2="20" y2="290"/>
+      <circle cx="200" cy="200" r="80"/>
+      <circle cx="200" cy="200" r="120"/>
+      <circle cx="200" cy="200" r="160"/>
+    </svg>
+    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="0.8">
+      <polygon points="150,10 285,80 285,220 150,290 15,220 15,80"/>
+      <polygon points="150,40 255,95 255,205 150,260 45,205 45,95"/>
+      <circle cx="150" cy="150" r="60"/>
+      <line x1="150" y1="10" x2="150" y2="290"/>
+      <line x1="15" y1="80" x2="285" y2="220"/>
+      <line x1="285" y1="80" x2="15" y2="220"/>
+    </svg>
+  </div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">خطة المحتوى الشهرية</div>
+    <h1 class="hero-title">
+      مركز الأمة الإسلامي<br>
+      <em>استراتيجية المحتوى</em>
+    </h1>
+    <p class="hero-subtitle">
+      150 منشوراً شهرياً · 5 منشورات يومياً · 3 محاور استراتيجية<br>
+      محتوى متكامل يصل إلى جمهورك في كل وقت
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num count-anim" data-target="150">0</span>
+        <span class="stat-label">منشور شهرياً</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num count-anim" data-target="5">0</span>
+        <span class="stat-label">منشورات يومياً</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num count-anim" data-target="3">0</span>
+        <span class="stat-label">محاور رئيسية</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num count-anim" data-target="7">0</span>
+        <span class="stat-label">أيام بلا توقف</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STRATEGY SECTION ===== -->
+<section id="strategy">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">التوزيع اليومي</span>
+      <h2 class="section-title">🎯 استراتيجية التوزيع اليومي</h2>
+      <p class="section-desc">
+        خمسة منشورات موزعة بدقة على مدار اليوم لضمان وصول المحتوى في أوقات ذروة مختلفة وتغطية كافة المحاور بتوازن احترافي.
+      </p>
+    </div>
+    <div class="ornament">❖ ❖ ❖</div>
+    <div class="strategy-grid">
+      <div class="strategy-card">
+        <div class="card-icon">📚</div>
+        <div class="card-title">المنشور الأول — محتوى تعليمي</div>
+        <div class="card-desc">نصائح خفيفة تعليمية موجهة لمعلمي الأعاجم، تُغذّي العقل وتُثير الفضول في بداية يوم منتج.</div>
+        <span class="card-time">⏰ 9:00 صباحاً</span>
+      </div>
+      <div class="strategy-card">
+        <div class="card-icon">🤖</div>
+        <div class="card-title">المنشور الثاني — إنفوجرافيك / تفاعلي</div>
+        <div class="card-desc">محتوى بصري مميز عن الذكاء الاصطناعي في التعليم، يُحفّز التفاعل والمشاركة في وقت الغداء.</div>
+        <span class="card-time">⏰ 1:00 ظهراً</span>
+      </div>
+      <div class="strategy-card">
+        <div class="card-icon">🎬</div>
+        <div class="card-title">المنشور الثالث — ريلز المحاضرات</div>
+        <div class="card-desc">مقتطفات قصيرة ومؤثرة من محاضرات الدبلومة تُبرز القيمة العلمية للبرنامج بأسلوب جذاب.</div>
+        <span class="card-time">⏰ 5:00 عصراً</span>
+      </div>
+      <div class="strategy-card">
+        <div class="card-icon">📣</div>
+        <div class="card-title">المنشور الرابع — ترويجي / إثبات اجتماعي</div>
+        <div class="card-desc">محتوى إعلاني متنوع بين عرض مباشر وآراء المتدربين وإبراز مميزات الدبلومة في أفضل وقت للوصول.</div>
+        <span class="card-time">⏰ 8:00 مساءً</span>
+      </div>
+      <div class="strategy-card">
+        <div class="card-icon">✨</div>
+        <div class="card-title">المنشور الخامس — منوع / ذكاء اصطناعي</div>
+        <div class="card-desc">فيديو ذكاء اصطناعي مرتين أسبوعياً، وبوستات نقاشية وتفاعلية لتقوية علاقة المركز بجمهوره ليلاً.</div>
+        <span class="card-time">⏰ 10:00 ليلاً</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PILLARS ===== -->
+<section id="pillars">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">المحاور الرئيسية</span>
+      <h2 class="section-title">💡 المحاور الثلاثة للمحتوى</h2>
+      <p class="section-desc">
+        ثلاثة محاور متكاملة تُغطّي التعليم والتقنية والترويج، مصممة لبناء علامة تجارية قوية وجذب المتدربين.
+      </p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-num">١</div>
+          <span class="pillar-emoji">🎓</span>
+          <div class="pillar-title-h">الدبلومة الشاملة لتأهيل معلمي الأعاجم</div>
+          <div class="pillar-sub">TEACHERS DIPLOMA</div>
+        </div>
+        <div class="pillar-body">
+          <ul class="pillar-list">
+            <li>ريلز مقتطعة من المحاضرات (30–60 ثانية) تُبرز معلومة واحدة صادمة</li>
+            <li>نصائح تربوية للتعامل مع الطلاب غير الناطقين بالعربية</li>
+            <li>مصطلحات وشرحها باللغة الإنجليزية لتيسير الفهم</li>
+            <li>كتب ومراجع مقترحة لرفع كفاءة المعلم</li>
+            <li>مهارات إدارة الفصل الافتراضي وتصحيح مخارج الحروف</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-num">٢</div>
+          <span class="pillar-emoji">🤖</span>
+          <div class="pillar-title-h">الذكاء الاصطناعي في التعليم</div>
+          <div class="pillar-sub">AI IN EDUCATION</div>
+        </div>
+        <div class="pillar-body">
+          <ul class="pillar-list">
+            <li>فيديوهات Avatar أو Voice-over بالذكاء الاصطناعي (مرتان أسبوعياً)</li>
+            <li>إنفوجرافيك: أفضل أدوات AI لمعلمي القرآن واللغة العربية</li>
+            <li>مقارنات: التحضير اليدوي مقابل التحضير بالذكاء الاصطناعي</li>
+            <li>خطوات تصميم درس كامل بالذكاء الاصطناعي في دقائق</li>
+            <li>مستقبل تعليم اللغات ودور الـ AI في تطوير المعلم</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-header">
+          <div class="pillar-num">٣</div>
+          <span class="pillar-emoji">📢</span>
+          <div class="pillar-title-h">المحتوى الإعلاني والترويجي</div>
+          <div class="pillar-sub">PROMOTIONAL CONTENT</div>
+        </div>
+        <div class="pillar-body">
+          <ul class="pillar-list">
+            <li>إعلان مباشر (Hard Sell): مميزات الدبلومة، السعر، وكيفية الحجز</li>
+            <li>إعلان غير مباشر (Soft Sell): مشكلة المعلم وتقديم الدبلومة كحل</li>
+            <li>الإثبات الاجتماعي: آراء المتدربين ولقطات الشكر والإحصائيات</li>
+            <li>دعوة لحضور لايف أو ويبينار تعريفي مجاني</li>
+            <li>تذكير دوري بطرق التواصل وخطوات التسجيل</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SCHEDULE ===== -->
+<section id="schedule">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">الخطة الأسبوعية</span>
+      <h2 class="section-title">📅 الهيكل الأسبوعي المتكرر</h2>
+      <p class="section-desc">جدول أسبوعي محكم يضمن التنوع ويمنع التكرار الممل، مع تغطية كافة المحاور والأوقات بدقة.</p>
+    </div>
+
+    <div class="week-tabs" id="weekTabs">
+      <button class="tab-btn active" data-week="all">📋 الكل</button>
+      <button class="tab-btn" data-type="edu">🎓 تأهيل</button>
+      <button class="tab-btn" data-type="ai">🤖 AI</button>
+      <button class="tab-btn" data-type="promo">📣 ترويجي</button>
+    </div>
+
+    <div class="schedule-table-wrap">
+      <table class="schedule" id="scheduleTable">
+        <thead>
+          <tr>
+            <th>اليوم</th>
+            <th>9:00 ص</th>
+            <th>1:00 ظ</th>
+            <th>5:00 ع</th>
+            <th>8:00 م</th>
+            <th>10:00 ل</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>السبت</td>
+            <td>نصيحة تربوية لمعلمي الأعاجم<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>إنفوجرافيك: أدوات AI للمعلمين<br><span class="tag-pill tag-ai">AI</span></td>
+            <td>ريلز: مقتطف من محاضرة الدبلومة<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>إعلان مباشر عن الدبلومة ومميزاتها<br><span class="tag-pill tag-promo">ترويجي</span></td>
+            <td>فيديو ذكاء اصطناعي (1)<br><span class="tag-pill tag-ai">AI</span></td>
+          </tr>
+          <tr>
+            <td>الأحد</td>
+            <td>مصطلح وتفسيره بالإنجليزية<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>كيف يوفر الـ AI وقت المعلم؟<br><span class="tag-pill tag-ai">AI</span></td>
+            <td>ريلز: مهارة جذب انتباه الطالب<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>آراء المتدربين السابقين<br><span class="tag-pill tag-promo">ترويجي</span></td>
+            <td>سؤال نقاشي للجمهور<br><span class="tag-pill tag-mixed">منوع</span></td>
+          </tr>
+          <tr>
+            <td>الإثنين</td>
+            <td>اقتباس عن فضل تعليم العربية<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>إحصائيات عن التعليم والـ AI<br><span class="tag-pill tag-ai">AI</span></td>
+            <td>ريلز: مقتطف من محاضرة الدبلومة<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>لماذا مركز الأمة هو خيارك الأول؟<br><span class="tag-pill tag-promo">ترويجي</span></td>
+            <td>قصة نجاح أحد الخريجين<br><span class="tag-pill tag-mixed">منوع</span></td>
+          </tr>
+          <tr>
+            <td>الثلاثاء</td>
+            <td>خطأ شائع يقع فيه معلمو الأعاجم<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>تفاعلي: هل جربت أداة كذا؟<br><span class="tag-pill tag-ai">AI</span></td>
+            <td>ريلز: تصحيح مخارج الحروف<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>إعلان عن خصم أو عرض متاح<br><span class="tag-pill tag-promo">ترويجي</span></td>
+            <td>فيديو ذكاء اصطناعي (2)<br><span class="tag-pill tag-ai">AI</span></td>
+          </tr>
+          <tr>
+            <td>الأربعاء</td>
+            <td>كتاب أو مرجع للمعلمين<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>خطوات تصميم درس بالـ AI<br><span class="tag-pill tag-ai">AI</span></td>
+            <td>ريلز: مقتطف من محاضرة الدبلومة<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>شاركنا: ماذا تتوقع من الدبلومة؟<br><span class="tag-pill tag-promo">ترويجي</span></td>
+            <td>نصيحة لتهيئة بيئة العمل<br><span class="tag-pill tag-mixed">منوع</span></td>
+          </tr>
+          <tr>
+            <td>الخميس</td>
+            <td>مهارة إدارة الفصل الافتراضي<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>مستقبل تعليم اللغات مع الـ AI<br><span class="tag-pill tag-ai">AI</span></td>
+            <td>سؤال وجواب من محاضرة سابقة<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>دعوة لحضور لايف تعريفي<br><span class="tag-pill tag-promo">ترويجي</span></td>
+            <td>مسابقة أو فزورة لغوية<br><span class="tag-pill tag-mixed">منوع</span></td>
+          </tr>
+          <tr>
+            <td>الجمعة</td>
+            <td>تهنئة بيوم الجمعة + دعاء<br><span class="tag-pill tag-mixed">منوع</span></td>
+            <td>أخلاقيات استخدام الـ AI<br><span class="tag-pill tag-ai">AI</span></td>
+            <td>ريلز: مقتطف روحي/تحفيزي<br><span class="tag-pill tag-edu">تأهيل</span></td>
+            <td>التذكير بطرق التواصل والتسجيل<br><span class="tag-pill tag-promo">ترويجي</span></td>
+            <td>بوست ترفيهي / ختام الأسبوع<br><span class="tag-pill tag-mixed">منوع</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TIPS ===== -->
+<section id="tips">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">نصائح الإدارة</span>
+      <h2 class="section-title">⚙️ نصائح لإدارة هذا الحجم من المحتوى</h2>
+      <p class="section-desc">أدوات وأساليب عملية لتحويل خطة المحتوى من ورقة إلى واقع يومي سلس وفعّال.</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon-wrap">📅</div>
+        <div class="tip-text">
+          <h4>الجدولة المسبقة</h4>
+          <p>استخدم Meta Business Suite لرفع وجدولة محتوى الأسبوع كاملاً في يوم واحد لتوفير الوقت والجهد.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon-wrap">♻️</div>
+        <div class="tip-text">
+          <h4>إعادة التدوير (Repurposing)</h4>
+          <p>حوّل فيديو الذكاء الاصطناعي إلى بوست نصي، والإنفوجرافيك إلى سلسلة ريلز في الأسبوع التالي.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon-wrap">🎨</div>
+        <div class="tip-text">
+          <h4>توحيد الهوية البصرية</h4>
+          <p>حافظ على ألوان وخطوط مركز الأمة ثابتة في جميع التصميمات لتسهيل التعرف على العلامة التجارية.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon-wrap">✂️</div>
+        <div class="tip-text">
+          <h4>أدوات المونتاج</h4>
+          <p>استخدم Adobe Premiere Pro لتقطيع المحاضرات الطويلة إلى مقاطع 30–60 ثانية تُركّز على معلومة واحدة.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon-wrap">📊</div>
+        <div class="tip-text">
+          <h4>تحليل الأداء الأسبوعي</h4>
+          <p>راجع تحليلات المنشورات كل أسبوع لمعرفة أكثر الأوقات والأنواع تفاعلاً وضبط الخطة وفقاً لذلك.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon-wrap">🤝</div>
+        <div class="tip-text">
+          <h4>بناء مجتمع متفاعل</h4>
+          <p>رد على التعليقات بانتظام وشجع الجمهور على المشاركة لتعزيز الثقة وتحسين وصول المنشورات عضوياً.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <img src="logo.png" alt="Logo" class="footer-logo-img"
+         onerror="this.style.display='none'">
+    <div class="footer-name">مركز الأمة الإسلامي</div>
+    <div class="footer-tagline">UMMAH ISLAMIC CENTER</div>
+    <div class="footer-divider"></div>
+    <div class="footer-copy">
+      خطة المحتوى الشهرية — 150 منشوراً · 5 يومياً · 3 محاور
+      <br>جميع الحقوق محفوظة © 2025
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ===== SPLASH ===== */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('splash').classList.add('hidden');
+    }, 3200);
+  });
+
+  /* ===== SCROLL PROGRESS ===== */
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('scroll-progress');
+    const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    el.style.width = scrolled + '%';
+  });
+
+  /* ===== MOBILE NAV ===== */
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('mainNav').classList.toggle('open');
+  });
+
+  /* ===== INTERSECTION OBSERVER ===== */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = (el.dataset.delay || 0);
+        setTimeout(() => el.classList.add('visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.strategy-card, .pillar-card, .tip-card, .reveal').forEach((el, i) => {
+    el.dataset.delay = (i % 4) * 120;
+    observer.observe(el);
+  });
+
+  /* ===== COUNTER ANIMATION ===== */
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        let start = 0;
+        const dur = 1400;
+        const step = target / (dur / 16);
+        const timer = setInterval(() => {
+          start += step;
+          if (start >= target) { start = target; clearInterval(timer); }
+          el.textContent = Math.floor(start);
+        }, 16);
+        counterObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count-anim').forEach(el => counterObs.observe(el));
+
+  /* ===== TABLE FILTER TABS ===== */
+  document.getElementById('weekTabs').addEventListener('click', e => {
+    const btn = e.target.closest('.tab-btn');
+    if (!btn) return;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const type = btn.dataset.type;
+    const rows = document.querySelectorAll('#scheduleTable tbody tr');
+
+    if (!type) {
+      rows.forEach(r => r.style.opacity = '1');
+      return;
+    }
+    rows.forEach(row => {
+      const hasTags = row.querySelectorAll('.tag-' + type).length > 0;
+      row.style.transition = 'opacity 0.3s';
+      row.style.opacity = hasTags ? '1' : '0.3';
+    });
+  });
+
+  /* ===== ACTIVE NAV ON SCROLL ===== */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--gold-light)' : '';
+    });
+  });
+
+  /* ===== HEADER SCROLL EFFECT ===== */
+  window.addEventListener('scroll', () => {
+    const h = document.querySelector('header');
+    h.style.boxShadow = window.scrollY > 40
+      ? '0 6px 40px rgba(0,0,0,0.35)' : '0 4px 30px rgba(0,0,0,0.2)';
+  });
+</script>
+</body>
+</html>
